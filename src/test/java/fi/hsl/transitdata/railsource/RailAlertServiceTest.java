@@ -7,6 +7,7 @@ import org.apache.pulsar.client.api.Producer;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
 @Slf4j
@@ -26,7 +27,10 @@ public class RailAlertServiceTest {
 
     @Test
     public void handleRailAlerts_sendValidAlert_shouldSendToProducer() {
-        this.railAlertService.handleRailAlerts(FEEDMESSAGE);
+        Integer sentAlerts = this.railAlertService.sendRailAlerts(FEEDMESSAGE);
+        //Example file contains 35 alerts
+        assertEquals(sentAlerts, 35, 0);
     }
+
 
 }

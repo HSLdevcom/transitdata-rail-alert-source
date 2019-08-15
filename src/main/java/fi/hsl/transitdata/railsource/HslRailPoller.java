@@ -55,7 +55,8 @@ class HslRailPoller {
     }
 
     private void handleFeedMessage(GtfsRealtime.FeedMessage feedMessage) throws PulsarClientException {
-        railAlertService.handleRailAlerts(feedMessage);
+        Integer sentAlerts = railAlertService.sendRailAlerts(feedMessage);
+        log.info("Sent {} alerts", sentAlerts);
     }
 
 }
